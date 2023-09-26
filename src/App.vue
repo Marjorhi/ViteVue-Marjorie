@@ -1,20 +1,30 @@
 <script setup>
 import { ref } from 'vue';
 
-
-const text = ref('');
-const submittedName = ref('');
+const firstName = ref('');
+const lastName = ref('');
+const submittedFirstName = ref('');
+const submittedLastName = ref('');
 
 const handleSubmit = () => {
-  submittedName.value = text.value;
+  submittedFirstName.value = firstName.value;
+  submittedLastName.value = lastName.value;
 };
 </script>
 
 <template>
-  <p>First Name</p>
-  <input v-model="text">
+  <div>
+    <p>First Name</p>
+    <input v-model="firstName">
+  </div>
+  <div>
+    <p>Last Name</p>
+    <input v-model="lastName">
+  </div>
   <button @click="handleSubmit">Submit</button>
+
   
-  <!-- Display the submitted name -->
-  <p> {{ submittedName }}</p>
+
+  <!-- Display the submitted names -->
+  <p>{{ submittedFirstName }} {{ submittedLastName }}</p>
 </template>
