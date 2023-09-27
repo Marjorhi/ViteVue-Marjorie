@@ -33,9 +33,9 @@ const handleSubmit = () => {
     <p>Gender</p>
     <select v-model="selected">
       <option disabled value="">Please select one</option>
-      <option value="female">FEMALE</option>
-      <option value="male">MALE</option>
-      <option value="other">OTHER</option>
+      <option value="female">Female</option>
+      <option value="male">Male</option>
+      <option value="other">Prefer not to say</option>
     </select>
     <p v-if="selected === 'female'"></p>
     <p v-else-if="selected === 'male'"></p>
@@ -48,3 +48,4 @@ const handleSubmit = () => {
   <p>{{ submittedBirthday }}</p>
   <p>{{ selected }}</p>
 </template>
+
