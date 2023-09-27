@@ -8,48 +8,70 @@ const selected = ref(''); // Added selected as a ref variable for gender
 const submittedFirstName = ref('');
 const submittedLastName = ref('');
 const submittedBirthday = ref('');
+const selectedGender = ref('');
 
 const handleSubmit = () => {
   submittedFirstName.value = firstName.value;
   submittedLastName.value = lastName.value;
   submittedBirthday.value = birthday.value;
+  selectedGender.value = selected.value;
+
 };
 </script>
 
 <template>
-   <!-- First Name -->
+  <!-- First Name -->
   <div>
     <p>First Name</p>
-    <input v-model="firstName">
+    <input v-model="firstName" required>
+    <!-- Display error message if the field is empty -->
+    <p class="error" v-if="!firstName">First Name is required</p>
   </div>
+
+
   <!-- Last Name -->
   <div>
     <p>Last Name</p>
-    <input v-model="lastName">
+    <input v-model="lastName" required>
+    <!-- Display error message if the field is empty -->
+    <p class="error" v-if="!lastName">Last Name is required</p>
   </div>
+
+
   <!-- Birthday -->
   <div>
     <p>Birthday</p>
-    <input type="date" v-model="birthday">
+    <input type="date" v-model="birthday" required>
+    <p class="error" v-if="!birthday">Birthday is required</p>
   </div>
+
+
   <!-- Gender -->
   <div>
     <p>Gender</p>
-    <select v-model="selected">
+    <select v-model="selected" required>
       <option disabled value="">Please select one</option>
       <option value="female">Female</option>
       <option value="male">Male</option>
       <option value="other">Prefer not to say</option>
     </select>
-    <p v-if="selected === 'female'"></p>
-    <p v-else-if="selected === 'male'"></p>
-    <p v-else></p>
+    <p class="error" v-if="!selected">Gender is required</p>
   </div>
+
   <button @click="handleSubmit">Submit</button>
 
   <!-- Display the submitted information -->
   <p>{{ submittedFirstName }} {{ submittedLastName }}</p>
   <p>{{ submittedBirthday }}</p>
-  <p>{{ selected }}</p>
+  <p>{{ selectedGender }}</p>
 </template>
+
+<style scoped>
+.error {
+  color: red;
+  font-size: 8px;
+  margin-top: 5px;
+}
+</style>
+
 
