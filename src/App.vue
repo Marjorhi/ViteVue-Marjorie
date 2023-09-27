@@ -17,18 +17,22 @@ const handleSubmit = () => {
 </script>
 
 <template>
+   <!-- First Name -->
   <div>
     <p>First Name</p>
     <input v-model="firstName">
   </div>
+  <!-- Last Name -->
   <div>
     <p>Last Name</p>
     <input v-model="lastName">
   </div>
+  <!-- Birthday -->
   <div>
     <p>Birthday</p>
     <input type="date" v-model="birthday">
   </div>
+  <!-- Gender -->
   <div>
     <p>Gender</p>
     <select v-model="selected">
