@@ -9,6 +9,7 @@ const submittedFirstName = ref('');
 const submittedLastName = ref('');
 const submittedBirthday = ref('');
 const selectedGender = ref('');
+const submissionTime = ref('');
 
 const handleSubmit = () => {
   submittedFirstName.value = firstName.value;
@@ -16,11 +17,16 @@ const handleSubmit = () => {
   submittedBirthday.value = birthday.value;
   selectedGender.value = selected.value;
 
+  // Get the current date and time
+  const currentTime = new Date();
+  const formattedTime = `${currentTime.toLocaleDateString()} ${currentTime.toLocaleTimeString()}`;
+  submissionTime.value = formattedTime;
 };
 </script>
 
 <template>
-  <!-- First Name -->
+  <!-- ... (Your existing form code) ... -->
+   <!-- First Name -->
   <div>
     <p>First Name</p>
     <input v-model="firstName" required>
@@ -59,11 +65,13 @@ const handleSubmit = () => {
   </div>
 
   <button @click="handleSubmit">Submit</button>
-
   <!-- Display the submitted information -->
-  <p>{{ submittedFirstName }} {{ submittedLastName }}</p>
-  <p>{{ submittedBirthday }}</p>
-  <p>{{ selectedGender }}</p>
+  <p class="p">{{ submittedFirstName }} {{ submittedLastName }}</p>
+  <p class="p">{{ submittedBirthday }}</p>
+  <p class="p">{{ selectedGender }}</p>
+  
+  <!-- Display the submission time -->
+  <p class="p">Created at: {{ submissionTime }}</p>
 </template>
 
 <style scoped>
@@ -72,6 +80,7 @@ const handleSubmit = () => {
   font-size: 8px;
   margin-top: 5px;
 }
+.p {
+  font: bold;
+}
 </style>
-
-
