@@ -50,7 +50,7 @@ const handleClear = () => {
       <p>First Name</p>
       <input v-model="firstName" required>
       <!-- Display error message if the field is empty -->
-      <p class="error" v-if="!firstName">First Name is required</p>
+      <p class="error" v-if="!firstName">Required!</p>
     </div>
 
     <!-- Last Name -->
@@ -58,14 +58,14 @@ const handleClear = () => {
       <p>Last Name</p>
       <input v-model="lastName" required>
       <!-- Display error message if the field is empty -->
-      <p class="error" v-if="!lastName">Last Name is required</p>
+      <p class="error" v-if="!lastName">Required!</p>
     </div>
 
     <!-- Birthday -->
     <div>
       <p>Birthday</p>
       <input type="date" v-model="birthday" required>
-      <p class="error" v-if="!birthday">Birthday is required</p>
+      <p class="error" v-if="!birthday">Required!</p>
     </div>
 
     <!-- Gender -->
@@ -77,7 +77,7 @@ const handleClear = () => {
         <option value="Male">Male</option>
         <option value="Other">Prefer not to say</option>
       </select>
-      <p class="error" v-if="!selected">Gender is required</p>
+      <p class="error" v-if="!selected">Required!</p>
     </div>
 
     <button @click="handleSubmit" :disabled="isSubmitDisabled">Submit</button>
@@ -99,7 +99,7 @@ const handleClear = () => {
 .error {
   color: red;
   font-size: 8px;
-  margin-top: 5px;
+  margin-top: 2px;
 }
 .p {
   font: bold;
