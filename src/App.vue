@@ -23,10 +23,10 @@ const handleSubmit = () => {
   submissionTime.value = formattedTime;
 };
 </script>
-
-<template>
-  <!-- ... (Your existing form code) ... -->
-   <!-- First Name -->
+  
+ <template>
+  <div id="app">
+     <!-- First Name -->
   <div>
     <p>First Name</p>
     <input v-model="firstName" required>
@@ -64,14 +64,16 @@ const handleSubmit = () => {
     <p class="error" v-if="!selected">Gender is required</p>
   </div>
 
-  <button @click="handleSubmit">Submit</button>
-  <!-- Display the submitted information -->
-  <p class="p">{{ submittedFirstName }} {{ submittedLastName }}</p>
-  <p class="p">{{ submittedBirthday }}</p>
-  <p class="p">{{ selectedGender }}</p>
-  
-  <!-- Display the submission time -->
-  <p class="p">Created at: {{ submissionTime }}</p>
+    <button @click="handleSubmit">Submit</button>
+
+    <!-- Display submitted information and creation time conditionally -->
+    <div v-if="submittedFirstName || submittedLastName || submittedBirthday || selectedGender || submissionTime">
+      <p class="p">{{ submittedFirstName }} {{ submittedLastName }}</p>
+      <p class="p">{{ submittedBirthday }}</p>
+      <p class="p">{{ selectedGender }}</p>
+      <p class="p">Created at: {{ submissionTime }}</p>
+    </div>
+  </div>
 </template>
 
 <style scoped>
@@ -84,3 +86,4 @@ const handleSubmit = () => {
   font: bold;
 }
 </style>
+
