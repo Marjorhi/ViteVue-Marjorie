@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 
 const firstName = ref('');
 const lastName = ref('');
@@ -11,60 +11,77 @@ const submittedBirthday = ref('');
 const selectedGender = ref('');
 const submissionTime = ref('');
 
-const handleSubmit = () => {
-  submittedFirstName.value = firstName.value;
-  submittedLastName.value = lastName.value;
-  submittedBirthday.value = birthday.value;
-  selectedGender.value = selected.value;
+const isSubmitDisabled = computed(() => {
+  return !firstName.value || !lastName.value || !birthday.value || !selected.value;
+});
 
-  // Get the current date and time
-  const currentTime = new Date();
-  const formattedTime = `${currentTime.toLocaleDateString()} ${currentTime.toLocaleTimeString()}`;
-  submissionTime.value = formattedTime;
+const handleSubmit = () => {
+  if (!isSubmitDisabled.value) {
+    submittedFirstName.value = firstName.value;
+    submittedLastName.value = lastName.value;
+    submittedBirthday.value = birthday.value;
+    selectedGender.value = selected.value;
+
+    // Get the current date and time
+    const currentTime = new Date();
+    const formattedTime = `${currentTime.toLocaleDateString()} ${currentTime.toLocaleTimeString()}`;
+    submissionTime.value = formattedTime;
+  }
+};
+
+const handleClear = () => {
+  // Clear all form fields and reset submitted information
+  firstName.value = '';
+  lastName.value = '';
+  birthday.value = '';
+  selected.value = '';
+  submittedFirstName.value = '';
+  submittedLastName.value = '';
+  submittedBirthday.value = '';
+  selectedGender.value = '';
+  submissionTime.value = '';
 };
 </script>
-  
- <template>
+
+<template>
   <div id="app">
-     <!-- First Name -->
-  <div>
-    <p>First Name</p>
-    <input v-model="firstName" required>
-    <!-- Display error message if the field is empty -->
-    <p class="error" v-if="!firstName">First Name is required</p>
-  </div>
+    <!-- First Name -->
+    <div>
+      <p>First Name</p>
+      <input v-model="firstName" required>
+      <!-- Display error message if the field is empty -->
+      <p class="error" v-if="!firstName">First Name is required</p>
+    </div>
 
+    <!-- Last Name -->
+    <div>
+      <p>Last Name</p>
+      <input v-model="lastName" required>
+      <!-- Display error message if the field is empty -->
+      <p class="error" v-if="!lastName">Last Name is required</p>
+    </div>
 
-  <!-- Last Name -->
-  <div>
-    <p>Last Name</p>
-    <input v-model="lastName" required>
-    <!-- Display error message if the field is empty -->
-    <p class="error" v-if="!lastName">Last Name is required</p>
-  </div>
+    <!-- Birthday -->
+    <div>
+      <p>Birthday</p>
+      <input type="date" v-model="birthday" required>
+      <p class="error" v-if="!birthday">Birthday is required</p>
+    </div>
 
+    <!-- Gender -->
+    <div>
+      <p>Gender</p>
+      <select v-model="selected" required>
+        <option disabled value="">Please select one</option>
+        <option value="Female">Female</option>
+        <option value="Male">Male</option>
+        <option value="Other">Prefer not to say</option>
+      </select>
+      <p class="error" v-if="!selected">Gender is required</p>
+    </div>
 
-  <!-- Birthday -->
-  <div>
-    <p>Birthday</p>
-    <input type="date" v-model="birthday" required>
-    <p class="error" v-if="!birthday">Birthday is required</p>
-  </div>
-
-
-  <!-- Gender -->
-  <div>
-    <p>Gender</p>
-    <select v-model="selected" required>
-      <option disabled value="">Please select one</option>
-      <option value="female">Female</option>
-      <option value="male">Male</option>
-      <option value="other">Prefer not to say</option>
-    </select>
-    <p class="error" v-if="!selected">Gender is required</p>
-  </div>
-
-    <button @click="handleSubmit">Submit</button>
+    <button @click="handleSubmit" :disabled="isSubmitDisabled">Submit</button>
+    <button @click="handleClear">Clear</button>
 
     <!-- Display submitted information and creation time conditionally -->
     <div v-if="submittedFirstName || submittedLastName || submittedBirthday || selectedGender || submissionTime">
@@ -75,6 +92,8 @@ const handleSubmit = () => {
     </div>
   </div>
 </template>
+
+  
 
 <style scoped>
 .error {
