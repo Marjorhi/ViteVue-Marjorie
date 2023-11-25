@@ -96,13 +96,56 @@ const handleClear = () => {
   
 
 <style scoped>
-.error {
-  color: red;
-  font-size: 8px;
-  margin-top: 2px;
-}
-.p {
-  font: bold;
-}
+  #app {
+    max-width: 400px;
+    margin: 0 auto;
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+  }
+
+  div > * {
+    margin-bottom: 10px;
+  }
+
+  input,
+  select {
+    width: 100%;
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+
+  button {
+    padding: 8px 15px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-right: 10px;
+  }
+
+  button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+
+  .error {
+    color: red;
+    font-size: 12px;
+    margin-top: 2px;
+  }
+
+  .p {
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
 </style>
 
