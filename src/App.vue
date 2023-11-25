@@ -94,7 +94,6 @@ const handleClear = () => {
 </template>
 
   
-
 <style scoped>
   #app {
     max-width: 400px;
@@ -148,4 +147,3 @@ const handleClear = () => {
     margin-bottom: 5px;
   }
 </style>
-
